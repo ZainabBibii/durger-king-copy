@@ -14,20 +14,8 @@ function App() {
     tele.ready();
   });
 
-  const onAdd = (food) => {
-    const exist = cartItems.find((x) => x.id === food.id);
-    
-    if (exist) {
-      setCartItems(
-        cartItems.map((x) =>
-          x.id === food.id ? { ...exist, quantity: exist.quantity + 1 } : x
-        )
-      );
-    } else {
-      setCartItems([...cartItems, { ...food, quantity: 1 }]);
-    }
+  const onAdd = ( ) => {
 
-      // Update the "View Order" button
   tele.MainButton.text = "View Order";
   tele.MainButton.show();
   };
