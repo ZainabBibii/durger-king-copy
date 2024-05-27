@@ -14,11 +14,29 @@ function App() {
     tele.ready();
   });
 
-  const onAdd = ( ) => {
-
-  tele.MainButton.text = "View Order";
-  tele.MainButton.show();
+  const onAdd = (food) => {
+    const exist = cartItems.find((x) => x.id === food.id);
+  
+    if (exist) {
+      setCartItems(
+        cartItems.map((x) =>
+          x.id === food.id ? { ...exist, quantity: exist.quantity + 1 } : x
+        )
+      );
+    } else {
+      setCartItems([...cartItems, { ...food, quantity: 1 }]);
+    }
+  
+    // After updating the cart, update the button
+    updateViewOrderButton();
   };
+  
+  const updateViewOrderButton = () => {
+    tele.MainButton.text = "View Order";
+    tele.MainButton.show();
+  };
+  
+
 
   const onRemove = (food) => {
     const exist = cartItems.find((x) => x.id === food.id);
